@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "32ccc48a-7a0c-4edc-928a-bcaa7c13e8f3",
+		"name": "Countries",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20126707"
+	},
+	"item": [
+		{
+			"name": "CountriesAPI",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restcountries.com/v3.1/name/bangladesh",
+					"protocol": "https",
+					"host": [
+						"restcountries",
+						"com"
+					],
+					"path": [
+						"v3.1",
+						"name",
+						"bangladesh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CapitalApi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restcountries.com/v3.1/capital/dhaka",
+					"protocol": "https",
+					"host": [
+						"restcountries",
+						"com"
+					],
+					"path": [
+						"v3.1",
+						"capital",
+						"dhaka"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

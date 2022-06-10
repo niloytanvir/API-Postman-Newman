@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "d5089ead-b122-4355-8624-bbfbab50e590",
+		"name": "Postman Scripting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20126707"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"userid\",3);\r",
+							"pm.globals.set(\"variable_key\", \"variable_value\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Status Code Validation\r",
+							"\r",
+							"pm.test(\"status code is 200\",function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//multiple assertions in validation script\r",
+							"\r",
+							"pm.test(\"validate multiple fields in response\",function()\r",
+							"{\r",
+							"    respopnseJson = pm.response.json();\r",
+							"    pm.expect(respopnseJson.data.id).to.equal(3)\r",
+							"    pm.expect(respopnseJson.data.email).to.equal(\"emma.wong@reqres.in\")\r",
+							"    pm.expect(respopnseJson.data.first_name).to.equal(\"Emma\")\r",
+							"\r",
+							"});\r",
+							"\r",
+							"//Handing responses that don't parse\r",
+							"\r",
+							"pm.test(\"Body contains string\", function()\r",
+							"{\r",
+							"    pm.expect(pm.response.text()).to.include(\"wong\")\r",
+							"})\r",
+							"\r",
+							"//Status Code is One of them\r",
+							"pm.test(\"successful status code\",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+							"});\r",
+							"\r",
+							"//Testing Header\r",
+							"pm.test(\"Header is present\",function()\r",
+							"{\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content Type Value\",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//Testing Cookies\r",
+							"\r",
+							"pm.test(\"Cokkie is present\",function()\r",
+							"{\r",
+							"    pm.expect(pm.cookies.has(\"name\")).to.be.true\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cokkie Value is ok\",function()\r",
+							"{\r",
+							"    pm.expect(pm.cookies.get(\"name\")).to.eql(\"value\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//Response Time\r",
+							"pm.test(\"Response time is less than 20 ms\",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/{{userid}}",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{userid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
